@@ -118,8 +118,10 @@ func loginPage(w http.ResponseWriter, r *http.Request) {
 		if isUserAthorized(username, password) {
 
 			setCookie(w, username)
+			http.Redirect(w, r, "/", http.StatusFound)
+			return
 
 		}
+		http.Redirect(w, r, "/login/", http.StatusFound)
 	}
-	http.Redirect(w, r, "/", http.StatusFound)
 }
