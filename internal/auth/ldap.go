@@ -45,8 +45,13 @@ func (l LdapProvider) changeLdapSegver() {
 
 func (l LdapProvider) IsUserAuthenticated(username string, password string, group string) (authStat bool) {
 	ldapMutex.RLock()
+	searchGroup := []string{group}
+	if group == "" {
+		searchGroup = nil
+	}
+
 	//log.Println("ldap server address", l.LdapConfig.Server)
-	authStat, _, groups, err := ldapAuth.AuthenticateExtended(l.LdapConfig, username, password, []string{"cn"}, []string{group})
+	authStat, _, groups, err := ldapAuth.AuthenticateExtended(l.LdapConfig, username, password, []string{"cn"}, searchGroup)
 	//log.Printf("status %v entry %v groups %v", authStat, entry, groups)
 	defer ldapMutex.RLocker().Unlock()
 
@@ -63,7 +68,7 @@ func (l LdapProvider) IsUserAuthenticated(username string, password string, grou
 
 	} else if authStat {
 
-		if len(groups) == 0 {
+		if len(groups) == 0 && group != "" {
 			authStat = false
 		}
 
