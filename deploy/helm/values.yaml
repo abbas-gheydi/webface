@@ -52,6 +52,9 @@ env:
    value: "DC=test,DC=local"
  - name: LDAP_GROUP
    value: "GroupName"
+ - name: AUTH_MODE
+   value: ""
+   #value: "basic_auth"
 
 
 ingress:

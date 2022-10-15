@@ -15,6 +15,7 @@ func init() {
 	web.LdapSecurityLevel, _ = strconv.Atoi(os.Getenv("LDAP_SEC_LEVEL"))
 	web.LdapBaseDN = os.Getenv("LDAP_BASEDN")
 	web.LdapGroup = os.Getenv("LDAP_GROUP")
+	web.AUTH_MODE = os.Getenv("AUTH_MODE")
 	if web.LdapPort == 0 {
 		web.LdapPort = 389
 	}

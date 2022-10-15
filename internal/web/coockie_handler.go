@@ -1,13 +1,15 @@
 package web
 
-import "net/http"
+import (
+	"net/http"
+)
 
-type authHandler struct {
+type coockieAuthHandler struct {
 	//next http.Handler
 	next func(w http.ResponseWriter, r *http.Request)
 }
 
-func (h *authHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (h *coockieAuthHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	token, readCookieError := r.Cookie("auth")
 
 	if readCookieError == nil && isCookieValied(token.Value) {
@@ -20,9 +22,4 @@ func (h *authHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-}
-
-func MustAuth(handler func(w http.ResponseWriter, r *http.Request)) *authHandler {
-
-	return &authHandler{next: handler}
 }

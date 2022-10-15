@@ -1,8 +1,14 @@
 package web
 
 import (
+	"net/http"
+
 	"github.com/Abbas-gheydi/webface/internal/auth"
 	ldapAuth "github.com/korylprince/go-ad-auth/v3"
+)
+
+const (
+	basic_auth = "basic_auth"
 )
 
 var (
@@ -11,9 +17,19 @@ var (
 	LdapSecurityLevel = 4
 	LdapBaseDN        string
 	LdapGroup         string
+	AUTH_MODE         string
 )
 
 var SSO authSource
+
+func MustAuth(handler func(w http.ResponseWriter, r *http.Request)) http.Handler {
+	if AUTH_MODE == basic_auth {
+		return &basicAuthHandler{next: handler}
+
+	}
+
+	return &coockieAuthHandler{next: handler}
+}
 
 type authSource interface {
 	IsUserAuthenticated(username string, password string, group string) (authStat bool)
