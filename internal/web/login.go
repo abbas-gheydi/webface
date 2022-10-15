@@ -30,8 +30,10 @@ func init() {
 
 func setCookie(w http.ResponseWriter, uname string) {
 	cookie := &http.Cookie{Name: "auth",
-		Value: generate_jwt(uname),
-		Path:  "/",
+		Value:    generate_jwt(uname),
+		Path:     "/",
+		Secure:   true,
+		HttpOnly: true,
 	}
 	http.SetCookie(w, cookie)
 
