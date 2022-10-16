@@ -18,6 +18,7 @@ var (
 	LdapBaseDN        string
 	LdapGroup         string
 	AUTH_MODE         string
+	LISTEN_ADDR       string = "0.0.0.0:8080"
 )
 
 var SSO authSource
