@@ -1,0 +1,16 @@
+version: '3'
+services:
+ webface:
+  image: abbas9006/webface
+  #network_mode: host
+  environment:
+   LISTEN_ADDR: 0.0.0.0:8080
+   UPSTREAM: 'http://upstream address'
+   LDAP_SERVER: 'ldapserver_ip'
+   LDAP_PORT: '389'
+   LDAP_SEC_LEVEL: '4'
+   LDAP_BASEDN: 'DC=test,DC=local'
+   LDAP_GROUP: 'myadmin'
+   #AUTH_MODE: 'basic_auth'
+   AUTH_MODE: ''
+  
