@@ -12,13 +12,15 @@ const (
 )
 
 var (
-	LdapServer        string
-	LdapPort          = 389
-	LdapSecurityLevel = 4
-	LdapBaseDN        string
-	LdapGroup         string
-	AUTH_MODE         string
-	LISTEN_ADDR       string = "0.0.0.0:8080"
+	LdapServer          string
+	LdapPort            = 389
+	LdapSecurityLevel   = 4
+	LdapBaseDN          string
+	LdapGroup           string
+	AUTH_MODE           string
+	LISTEN_ADDR         string = "0.0.0.0:8080"
+	USERNAME_HEADER     string = "X-username"
+	SET_USERNAME_HEADER bool
 )
 
 var SSO authSource
@@ -54,4 +56,11 @@ func SetAuthSource(source string) authSource {
 func isUserAthorized(usernmae string, password string) bool {
 
 	return SSO.IsUserAuthenticated(usernmae, password, LdapGroup)
+}
+
+func setUseNameHeader(r *http.Request, username string) {
+	if SET_USERNAME_HEADER {
+		r.Header.Add(USERNAME_HEADER, username)
+	}
+
 }

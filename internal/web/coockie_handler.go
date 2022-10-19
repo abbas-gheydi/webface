@@ -14,6 +14,8 @@ func (h *coockieAuthHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	if readCookieError == nil && isCookieValied(token.Value) {
 		//authenticatin is successful
+		username, _ := validate_jwt(token.Value)
+		setUseNameHeader(r, username)
 		h.next(w, r)
 
 	} else {

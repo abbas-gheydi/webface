@@ -16,6 +16,7 @@ func (b *basicAuthHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if ok {
 
 		if isUserAthorized(username, password) {
+			setUseNameHeader(r, username)
 			b.next(w, r)
 			return
 		}

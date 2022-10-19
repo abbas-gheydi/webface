@@ -55,6 +55,10 @@ env:
  - name: AUTH_MODE
    value: ""
    #value: "basic_auth"
+   
+   # set header X-Username
+ - name: SET_USERNAME_HEADER
+   value: "false"
 
 
 ingress:
