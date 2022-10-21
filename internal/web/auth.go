@@ -60,7 +60,7 @@ func isUserAthorized(usernmae string, password string) bool {
 
 func setUseNameHeader(r *http.Request, username string) {
 	if SET_USERNAME_HEADER {
-		r.Header.Add(USERNAME_HEADER, username)
+		r.Header.Set(USERNAME_HEADER, username)
 	}
 
 }
