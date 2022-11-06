@@ -17,6 +17,7 @@ func init() {
 	web.LdapGroup = os.Getenv("LDAP_GROUP")
 	web.AUTH_MODE = os.Getenv("AUTH_MODE")
 	web.SET_USERNAME_HEADER, _ = strconv.ParseBool(os.Getenv("SET_USERNAME_HEADER"))
+	web.InsecureSkipVerify, _ = strconv.ParseBool(os.Getenv("InsecureSkipTLSVerify"))
 
 	if os.Getenv("LISTEN_ADDR") != "" {
 		web.LISTEN_ADDR = os.Getenv("LISTEN_ADDR")

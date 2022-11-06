@@ -59,6 +59,8 @@ env:
    # set header X-Username
  - name: SET_USERNAME_HEADER
    value: "false"
+ - name: InsecureSkipTLSVerify
+   value: "false"
 
 
 ingress:

@@ -16,6 +16,7 @@ func (h *coockieAuthHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		//authenticatin is successful
 		username, _ := validate_jwt(token.Value)
 		setUseNameHeader(r, username)
+
 		h.next(w, r)
 
 	} else {
