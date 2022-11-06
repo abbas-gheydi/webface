@@ -18,6 +18,7 @@ func init() {
 	web.AUTH_MODE = os.Getenv("AUTH_MODE")
 	web.SET_USERNAME_HEADER, _ = strconv.ParseBool(os.Getenv("SET_USERNAME_HEADER"))
 	web.InsecureSkipVerify, _ = strconv.ParseBool(os.Getenv("InsecureSkipTLSVerify"))
+	web.UPSTREAM_Bearer_TOKEN = os.Getenv("UPSTREAM_Bearer_TOKEN")
 
 	if os.Getenv("LISTEN_ADDR") != "" {
 		web.LISTEN_ADDR = os.Getenv("LISTEN_ADDR")

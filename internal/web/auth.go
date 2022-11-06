@@ -52,3 +52,9 @@ func setUseNameHeader(r *http.Request, username string) {
 	}
 
 }
+
+func setBearerTokenHeader(r *http.Request) {
+	if UPSTREAM_Bearer_TOKEN != "" {
+		r.Header.Set("Authorization", "Bearer "+UPSTREAM_Bearer_TOKEN)
+	}
+}

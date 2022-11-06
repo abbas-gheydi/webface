@@ -61,6 +61,8 @@ env:
    value: "false"
  - name: InsecureSkipTLSVerify
    value: "false"
+ - name: UPSTREAM_Bearer_TOKEN
+   value: ""
 
 
 ingress:

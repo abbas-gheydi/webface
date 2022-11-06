@@ -9,6 +9,7 @@ LDAP_GROUP='groupname'
 SET_USERNAME_HEADER='false'
 AUTH_MODE="basic_auth"
 InsecureSkipTLSVerify=true
+UPSTREAM_Bearer_TOKEN=""
 
 ```
 
