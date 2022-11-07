@@ -63,6 +63,10 @@ env:
    value: "false"
  - name: UPSTREAM_Bearer_TOKEN
    value: ""
+ - name: K8S_DASHBOARD_MODE
+   value: "false"
+ - name: K8S_SERVICE_ACCOUNT_NAME_SPACE
+   value: "kubernetes-dashboard"
 
 
 ingress:

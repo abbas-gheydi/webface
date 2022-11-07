@@ -1,5 +1,7 @@
 package web
 
+import "os"
+
 var (
 	LdapServer            string
 	LdapPort              = 389
@@ -12,4 +14,6 @@ var (
 	SET_USERNAME_HEADER   bool
 	InsecureSkipVerify    bool
 	UPSTREAM_Bearer_TOKEN string
+	EnableK8sDashbaord    bool
+	K8sSaNameSpace        string = os.Getenv("K8S_SERVICE_ACCOUNT_NAME_SPACE")
 )

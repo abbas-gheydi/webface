@@ -58,3 +58,17 @@ func setBearerTokenHeader(r *http.Request) {
 		r.Header.Set("Authorization", "Bearer "+UPSTREAM_Bearer_TOKEN)
 	}
 }
+
+func setK8sDashboardBearerToken(r *http.Request, username string) {
+	if EnableK8sDashbaord {
+
+		r.Header.Set("Authorization", "Bearer "+auth.GetK8sToken(K8sSaNameSpace, username))
+	}
+}
+
+func setRequestExtraHeaders(r *http.Request, username string) {
+	setUseNameHeader(r, username)
+	setBearerTokenHeader(r)
+	setK8sDashboardBearerToken(r, username)
+
+}

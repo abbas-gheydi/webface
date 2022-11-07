@@ -10,14 +10,12 @@ type basicAuthHandler struct {
 }
 
 func (b *basicAuthHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	//return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
 	username, password, ok := r.BasicAuth()
 	if ok {
 
 		if isUserAthorized(username, password) {
-			setUseNameHeader(r, username)
-			setBearerTokenHeader(r)
+			setRequestExtraHeaders(r, username)
 			b.next(w, r)
 			return
 		}

@@ -19,6 +19,8 @@ func init() {
 	web.SET_USERNAME_HEADER, _ = strconv.ParseBool(os.Getenv("SET_USERNAME_HEADER"))
 	web.InsecureSkipVerify, _ = strconv.ParseBool(os.Getenv("InsecureSkipTLSVerify"))
 	web.UPSTREAM_Bearer_TOKEN = os.Getenv("UPSTREAM_Bearer_TOKEN")
+	web.EnableK8sDashbaord, _ = strconv.ParseBool(os.Getenv("K8S_DASHBOARD_MODE"))
+	//web.K8sSaNameSpace = os.Getenv("K8S_SERVICE_ACCOUNT_NAME_SPACE")
 
 	if os.Getenv("LISTEN_ADDR") != "" {
 		web.LISTEN_ADDR = os.Getenv("LISTEN_ADDR")
