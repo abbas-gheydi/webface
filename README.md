@@ -1,5 +1,13 @@
+## About The Project:
+
+"webFace" is an authentication proxy server that protects services that do not have authentication mechanisms.   
+It authenticates users against Microsoft's active directory using the ldap/ldaps protocol.
+It has two authenticate mechanism:   
+basic auth   
+web form    
+to configure it you can use these envs:  
 ```
-envs:
+
 UPSTREAM='http://url'
 LDAP_SERVER='ldap server ip'
 LDAP_PORT='389'
