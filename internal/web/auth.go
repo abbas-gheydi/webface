@@ -2,6 +2,7 @@ package web
 
 import (
 	"net/http"
+	"strings"
 
 	"github.com/Abbas-gheydi/webface/internal/auth"
 	ldapAuth "github.com/korylprince/go-ad-auth/v3"
@@ -62,7 +63,7 @@ func setBearerTokenHeader(r *http.Request) {
 func setK8sDashboardBearerToken(r *http.Request, username string) {
 	if EnableK8sDashbaord {
 
-		r.Header.Set("Authorization", "Bearer "+auth.GetK8sToken(K8sSaNameSpace, username))
+		r.Header.Set("Authorization", "Bearer "+auth.GetK8sToken(K8sSaNameSpace, strings.ToLower(username)))
 	}
 }
 
