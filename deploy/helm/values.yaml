@@ -1,13 +1,9 @@
-# Default values for webface.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
 
 replicaCount: 1
 
 image:
   repository: abbas9006/webface
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
 
 imagePullSecrets: []
@@ -15,56 +11,79 @@ nameOverride: ""
 fullnameOverride: ""
 
 serviceAccount:
-  # Specifies whether a service account should be created
   create: true
-  # Annotations to add to the service account
   annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
   name: ""
 
 podAnnotations: {}
 
 podSecurityContext: {}
-  # fsGroup: 2000
 
 securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
 
 service:
   type: ClusterIP
   port: 8080
+
 env:
+  
+# UPSTREAM is http:// or https:// + name of k8s service with port
  - name: UPSTREAM
-   value: "http://upstream"
+   value: "http://upstream:8080"
+
+# LDAP_SERVER is Address of microsft active directory domain controler or its dns name
  - name: LDAP_SERVER
    value: "ldap-server-ip"
+
+# Ldap_Port is port of ldap server by default is 389 or for ldaps server is 636
  - name: LDAP_PORT
    value: "389"
+
+# LDAP_SEC_LEVEL is security setting for connectiong to ldap
+# 0 is SecurityNone
+# 1 is SecurityTLS
+# 2 is SecurityStartTLS
+# 3 is SecurityInsecureTLS
+# 4 is SecurityInsecureStartTLS
  - name: LDAP_SEC_LEVEL
    value: "4"
+
+# LDAP_BASEDN is ldap basedn, test.local domain is "DC=test,DC=local" and so on..
  - name: LDAP_BASEDN
    value: "DC=test,DC=local"
+
+# the name of group in ldap server that allows to view content of secure app
+# if the value set to "" mean all groups/users
  - name: LDAP_GROUP
    value: "GroupName"
+
+# Auth_MODE id setting for athentication mode it can be
+# "basic_auth" or "", empty mean web form
  - name: AUTH_MODE
    value: ""
-   #value: "basic_auth"
-   
-   # set header X-Username
+  
+# SET_USERNAME_HEADER is setting for pass user-name to UPSTREAM using "X_username" header.
  - name: SET_USERNAME_HEADER
    value: "false"
+
+# InsecureSkipTLSVerify is for skiping UPSTREAM tls validation check, default value is off.
  - name: InsecureSkipTLSVerify
    value: "false"
+
+# UPSTREAM_Bearer_TOKEN is token that sends for every connection to upstream,Its usefulee for some situation that UPSTREAM needs
+# some Bearer token to accept connections.
  - name: UPSTREAM_Bearer_TOKEN
    value: ""
+
+# K8S_DASHBOARD_MODE if sets to true it maps users to serviceacoount name in k8s (if exist)
+#ldap username must be same as k8s service account name.
  - name: K8S_DASHBOARD_MODE
    value: "false"
+
+# K8S_SERVICE_ACCOUNT_NAME_SPACE is the name namespace that must be searched for serviceaccounts
+# example: if your ldap username is abbas and sa namespace is "kubernetes-dashboard" then run:
+# kubectl create sa abbas -n kubernetes-dashboard
+# and set K8S_SERVICE_ACCOUNT_NAME_SPACE kubernetes-dashboard
  - name: K8S_SERVICE_ACCOUNT_NAME_SPACE
    value: "kubernetes-dashboard"
 
@@ -86,26 +105,13 @@ ingress:
   #      - chart-example.local
 
 resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
-
+ 
 autoscaling:
   enabled: false
   minReplicas: 1
   maxReplicas: 100
   targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
 
 nodeSelector: {}
-
 tolerations: []
-
 affinity: {}
