@@ -34,7 +34,6 @@ Helm install exampleSecureApp ./
 This is a example setting for domain “test.local” and domain controller ip address “192.168.1.1 “and allowed groups is “kafka_users” and kubernetes service is redpanda:8080:
 
 ```
-
 - name: UPSTREAM
   value: "[http://redpanda:8080]"
 - name: LDAP_SERVER
@@ -48,5 +47,5 @@ This is a example setting for domain “test.local” and domain controller ip a
 - name: LDAP_GROUP
   value: "kafka_users"
 ```
-```
+
 
