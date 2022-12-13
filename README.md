@@ -2,7 +2,7 @@
 
 ## About The Project:
 
-WebFace is a reverse proxy that is designed to secure unsecure apps on kubernetes and protect apps by passwords that reads from microsoft active directory. It deploys as a sidecar container and authenticate/authorize users by AD using Ldap/Ldaps.
+WebFace is a reverse proxy that is designed to secure unsecure apps on kubernetes and protect apps with passwords that reads from microsoft active directory. It deploys as a sidecar container and authenticate/authorize users by AD using Ldap/Ldaps.
 It has two kind of authentication method:
 
 -   BasicAuth
