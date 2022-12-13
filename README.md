@@ -7,7 +7,8 @@ It has two kind of authentication method:
 
 -   BasicAuth
 -   Login form
-    
+
+![Screenshot](screenshot.png)
 
 Some example of apps that tested against webface successfully:
 
@@ -18,7 +19,6 @@ Some example of apps that tested against webface successfully:
 -   Kibana
 -   Prometheus
 
-![Screenshot](screenshot.png)
     
 
 ## How to Use It:
