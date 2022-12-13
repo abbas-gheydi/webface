@@ -34,7 +34,7 @@ This is a example setting for domain “test.local” and domain controller ip a
 ```
 
 - name: UPSTREAM
-  value: "[http://redpanda:8080](http://redpanda:8080)"
+  value: "[http://redpanda:8080]"
 - name: LDAP_SERVER
   value: "192.168.1.1"
 - name: LDAP_PORT
