@@ -2,12 +2,13 @@
 
 ## About The Project:
 
-WebFace is a reverse proxy that is designed to secure unsecure apps on kubernetes and protect apps by passwords that reads from microsoft active directory. It deploys as a sidecar container and authenticate/authorize users by AD using Ldap/Ldaps.
+WebFace is a reverse proxy that is designed to secure unsecure apps on kubernetes and protect apps with passwords that reads from microsoft active directory. It deploys as a sidecar container and authenticate/authorize users by AD using Ldap/Ldaps.
 It has two kind of authentication method:
 
 -   BasicAuth
 -   Login form
-    
+
+![Screenshot](screenshot.png)
 
 Some example of apps that tested against webface successfully:
 
@@ -18,7 +19,6 @@ Some example of apps that tested against webface successfully:
 -   Kibana
 -   Prometheus
 
-![Screenshot](screenshot.png)
     
 
 ## How to Use It:
@@ -34,7 +34,6 @@ Helm install exampleSecureApp ./
 This is a example setting for domain “test.local” and domain controller ip address “192.168.1.1 “and allowed groups is “kafka_users” and kubernetes service is redpanda:8080:
 
 ```
-
 - name: UPSTREAM
   value: "[http://redpanda:8080]"
 - name: LDAP_SERVER
@@ -48,5 +47,5 @@ This is a example setting for domain “test.local” and domain controller ip a
 - name: LDAP_GROUP
   value: "kafka_users"
 ```
-```
+
 
